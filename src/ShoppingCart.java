@@ -8,12 +8,12 @@ public class ShoppingCart {
    private String currentDate;
    private ArrayList<ItemToPurchase> cartItems = new ArrayList<>();
 
-   public void ShoppingCardManager() {
+   public void ShoppingCard() {
       this.customerName = DEFAULT_CUST_NAME;
       this.currentDate = DEFAULT_CUR_DATE;
    }
 
-   public void ShoppingCardManager(String customerName, String currentDate) {
+   public void ShoppingCard(String customerName, String currentDate) {
       this.customerName = customerName;
       this.currentDate = currentDate;
    }
