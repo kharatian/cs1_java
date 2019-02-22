@@ -40,6 +40,8 @@ public class ItemToPurchase {
       return this.itemQuantity;
    }
 
+   public int getTotal() { return (this.itemPrice * this.itemQuantity);}
+
    // setters
    public void setName(String newName) {
       this.itemName = newName;

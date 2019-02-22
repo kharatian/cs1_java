@@ -1,5 +1,3 @@
-import scala.Int;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,21 +5,57 @@ public class PlayGround {
    private static int statInt = 1010;
 
    public static void main(String[] args) {
-      ArrayList<Integer> listOne = new ArrayList<Integer>();
-      ArrayList<Integer> listTwo = new ArrayList<Integer>();
 
-      listOne.add(1);
-      listOne.add(2);
-      listOne.add(3);
-      listOne.add(4);
+      ShoppingCart shopCart = new ShoppingCart();
 
-      listTwo  = listOne;
+      ItemToPurchase it1 = new ItemToPurchase();
+      ItemToPurchase it2 = new ItemToPurchase();
+      ItemToPurchase it3 = new ItemToPurchase();
+      ItemToPurchase it4 = new ItemToPurchase();
+      ItemToPurchase it5 = new ItemToPurchase();
 
-      listTwo.add(2, 54321);
+      it1.setName("Item 1 name");
+      it2.setName("Item 2 name");
+      it3.setName("Item 3 name");
+      it4.setName("Item 4 name");
+      it5.setName("Item 5 name");
 
-      System.out.println(listOne);
-      arrChange(listOne, 9999);
-      System.out.println(listOne);
+      it1.setPrice(1);
+      it2.setPrice(2);
+      it3.setPrice(3);
+      it4.setPrice(4);
+
+      it1.setQuantity(1);
+      it2.setQuantity(2);
+      it3.setQuantity(3);
+      it4.setQuantity(4);
+
+      it1.setDescription("decriptive description of item 1");
+      it2.setDescription("decriptive description of item 2");
+      it3.setDescription("decriptive description of item 3");
+      it4.setDescription("decriptive description of item 4");
+
+      shopCart.addItem(it1);
+      shopCart.addItem(it2);
+      shopCart.addItem(it3);
+      shopCart.addItem(it4);
+      shopCart.addItem(it5);
+
+      it2.setName(it1.getName());
+
+      it5.setName(it1.getName());
+
+      System.out.printf("Item 1 before changing:\n");
+      shopCart.printItemData(0);
+      shopCart.modifyItem(it5);
+      System.out.println("\nAfter Changing: \n");
+      shopCart.printItemData(0);
+
+      System.out.println(shopCart.getNumItemsInCart());
+      System.out.println(shopCart.getCostOfCart());
+      shopCart.printTotal();
+      shopCart.printDescriptions();
+
    }
    public static void arrChange(ArrayList<Integer> arr, int toAdd) {
       arr.add(toAdd);
