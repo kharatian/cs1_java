@@ -1,10 +1,12 @@
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class ChocolateReplacementTherapy {
+   public static void main(String[] args) {
+      final String PROMPT_MESSAGE= "Enter a clever noun or phrase (quit to exit): ";
 
-   public void main(String[] args) {
-      String[] chocolateQuotes = {"A little chocolate a day keeps the doctor at bay. - Marcia Carrington",
+      String[] chocQuotes = {"A little chocolate a day keeps the doctor at bay. - Marcia Carrington",
             "All you need is love. But a little chocolate now and then doesn't hurt. - Charles M. Schulz",
             "Anything is good if it's made of chocolate. - Jo Brand",
             "Caramels are only a fad. Chocolate is a permanent thing. - Milton Snavely Hershey",
@@ -36,14 +38,26 @@ public class ChocolateReplacementTherapy {
             "Your hand and your mouth agreed many years ago that, as far as chocolate is concerned, there is no need to involve your brain. - Dave Barry",
             "A little chocolate a day keeps the doctor at bay. - Marcia Carrington"};
       Scanner scnr = new Scanner(System.in);
-      String userInput = "";
-      String newPhrase;
-      int randomInd;
+      String outputString;
+      Random random = new Random();
+      int randomIndex;
+      String userInput;
+      boolean isQuit = false;
 
-      while (userInput.compareTo("quit") != 0) {
-         System.out.print("Enter a clever noun or phrase. Enter quit to exit: ");
+      while (!isQuit){
+         outputString = "";
+         System.out.print(PROMPT_MESSAGE);
          userInput = scnr.nextLine();
 
+         if (userInput.compareToIgnoreCase("quit") == 0){
+            isQuit = true
+            continue;
+         }
+         randomIndex = random.nextInt(chocQuotes.length);
+
+         outputString = String.format("\t%s\n", chocQuotes[randomIndex].replaceAll("chocolate", userInput));
+
+         System.out.println(outputString);
       }
    }
 }
