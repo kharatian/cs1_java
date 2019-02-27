@@ -8,12 +8,12 @@ public class ShoppingCart {
    private String currentDate;
    private ArrayList<ItemToPurchase> cartItems = new ArrayList<>();
 
-   public void ShoppingCard() {
+   public ShoppingCart() {
       this.customerName = DEFAULT_CUST_NAME;
       this.currentDate = DEFAULT_CUR_DATE;
    }
 
-   public void ShoppingCard(String customerName, String currentDate) {
+   public ShoppingCart(String customerName, String currentDate) {
       this.customerName = customerName;
       this.currentDate = currentDate;
    }
@@ -41,7 +41,7 @@ public class ShoppingCart {
       boolean itemFound = false;
       int i = 0;
 
-      while (!itemFound) {
+      while (!itemFound && i < this.cartItems.size()) {
 
          if (this.cartItems.get(i).getName().compareTo(itemName) == 0) {
             this.cartItems.remove(i);
@@ -63,7 +63,7 @@ public class ShoppingCart {
       String toChangeItemName = itemToChange.getName();
       int i = 0;
 
-      while (!itemFound) {
+      while (!itemFound && i < this.cartItems.size()) {
          currentItemName = this.cartItems.get(i).getName();
          if (currentItemName.compareTo(toChangeItemName) == 0) {
             if (itemToChange.getPrice() != 0) {
@@ -97,7 +97,13 @@ public class ShoppingCart {
 
    // Returns quantity of all items in cart. Has no parameters
    // @return int
-   public int getNumItemsInCart() {return this.cartItems.size();}
+   public int getNumItemsInCart() {
+      int totalItems = 0;
+      for(ItemToPurchase item: this.cartItems){
+         totalItems += item.getQuantity();
+      }
+      return totalItems;
+   }
 
    // Determines and returns the total cost of items in cart. Has no parameters.
    // @return int
@@ -105,7 +111,7 @@ public class ShoppingCart {
       int totalCost = 0;
 
       for (ItemToPurchase itp: this.cartItems) {
-         totalCost += itp.getPrice();
+         totalCost += itp.getPrice() * itp.getQuantity();
       }
 
       return totalCost;
@@ -114,18 +120,23 @@ public class ShoppingCart {
    // Outputs total of objects in cart.
    // If cart is empty, output this message: SHOPPING CART IS EMPTY
    public void printTotal() {
+      String stringToPrint;
+      stringToPrint = String.format("%s's Shopping Cart - %s\n" +
+                                    "Number of Items: %d\n\n",
+                                    this.customerName,
+                                    this.currentDate,
+                                    this.getNumItemsInCart());
 
-      String stringToPrint = String.format(
-            "%s's Shopping Cart - %s\n" +
-            "Number of Items: %d\n\n", this.customerName, this.currentDate,
-            this.getNumItemsInCart());
+      if (this.cartItems.size() > 0) {
+         for (ItemToPurchase item : this.cartItems) {
+            stringToPrint += String.format("%s %d @ $%d = $%d\n", item.getName(),
+                  item.getQuantity(),
+                  item.getPrice(),
+                  item.getTotal());
+         }
+      } else stringToPrint += "SHOPPING CART IS EMPTY\n";
 
-      for (ItemToPurchase item: this.cartItems) {
-         stringToPrint += String.format("%s %d @ %d = $%d\n", item.getName(),
-                                                            item.getQuantity(),
-                                                            item.getPrice(),
-                                                            item.getTotal());
-      }
+      stringToPrint += String.format("\nTotal: $%d\n", this.getCostOfCart());
       System.out.print(stringToPrint);
    }
 
@@ -137,9 +148,10 @@ public class ShoppingCart {
       stringToPrint += "Item Descriptions\n";
 
       for (ItemToPurchase item : this.cartItems) {
-         stringToPrint += String.format("%s\n", item.getDescription());
+         stringToPrint += String.format("%s: %s\n", item.getName(),
+                                                    item.getDescription());
       }
 
-      System.out.println(stringToPrint);
+      System.out.print(stringToPrint);
    }
 }

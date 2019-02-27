@@ -61,11 +61,12 @@ public class ItemToPurchase {
 
    public void printItemCost() {
       int totalPrice = this.itemQuantity * this.itemPrice;
-      System.out.printf("%s %d @ $%d = $%d\n", this.itemName, this.itemQuantity,
-                        this.itemPrice, totalPrice);
+      System.out.printf("%s %d @ $%d = $%d\n", this.itemName,
+                        this.itemQuantity, this.itemPrice, totalPrice);
    }
 
    public void printItemDescription() {
+      System.out.printf("%s %d", "this", 5);
       System.out.printf("%s: %s\n", this.itemName, this.itemDescription);
    }
 }
