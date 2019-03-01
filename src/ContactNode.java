@@ -26,27 +26,3 @@ public class ContactNode {
       System.out.println(toPrint);
    }
 }
-
-/**
- Parameterized constructor. Parameters are name followed by phone number.
-
- Private fields
-
- String contactName
-
- String contactPhoneNumber
-
- ContactNode nextNodePtr
-
- Public member methods
-
- getName() - Accessor (1 pt)
-
- getPhoneNumber - Accessor (1 pt)
-
- insertAfter() (2 pts)
-
- getNext() - Accessor (1 pt)
-
- printContactNode()
- */

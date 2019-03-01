@@ -50,7 +50,7 @@ public class ChocolateReplacementTherapy {
          userInput = scnr.nextLine();
 
          if (userInput.compareToIgnoreCase("quit") == 0){
-            isQuit = true
+            isQuit = true;
             continue;
          }
          randomIndex = random.nextInt(chocQuotes.length);
