@@ -19,11 +19,12 @@ public class SongEntry {
       this.songName = songName;
       this.artistName = artistName;
       this.songLenght = songLength;
+      this.nextNode = null;
    }
 
-   public void insertAfter(SongEntry currNode) {
-      currNode.setNext(this.nextNode);
-      this.setNext(currNode);
+   public void insertAfter(SongEntry newNode) {
+      newNode.setNext(this.nextNode);
+      this.setNext(newNode);
    }
 
    public void setNext(SongEntry nextNode){
@@ -36,9 +37,9 @@ public class SongEntry {
 
    public String getArtistName() {return this.artistName;}
 
-   public int getSongLenght() {return this.songLenght;}
+   public int getSongLength() {return this.songLenght;}
 
-   public SongEntry getNextNode() {return this.nextNode;}
+   public SongEntry getNext() {return this.nextNode;}
 
    public void printPlaylistSongs() {
       String toPrint = String.format("Unique ID: %s\n" +
